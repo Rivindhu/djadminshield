@@ -1,0 +1,69 @@
+# Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment
+venv/
+virt/
+env/
+.venv/
+.virt/
+.env/
+
+# Django stuff:
+*.log
+*.sqlite3
+db.sqlite3
+*.pot
+*.pyc
+*.swp
+*.bak
+*.swo
+*.coverage
+*.coverage.*
+*.tox/
+*.nox/
+*.hypothesis/
+*.pytest_cache/
+*.mypy_cache/
+*.pytest_cache/
+*.ipynb_checkpoints/
+
+# PyCharm, VSCode, etc.
+.vscode/
+.idea/
+
+# VS Code settings
+.settings/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Django migrations
+*/migrations/*
+!*/migrations/__init__.py
+
+# mypy
+.mypy_cache/
+
+# Environment variables file
+.env
+
+# macOS Finder settings
+.DS_Store
+
+# Windows Installer logs
+Thumbs.db
