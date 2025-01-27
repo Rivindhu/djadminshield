@@ -11,9 +11,6 @@ setup(
     url='https://github.com/Rivindhu/djadminshield',
     packages=find_packages(),
     include_package_data=True,
-    install_requirements=[
-        'django>=5.0',
-    ],
     classifiers=[
         'Framework :: Django',
         'Intended Audience :: Developers',
