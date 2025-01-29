@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="djadminshield",
-    version="0.1.0",
+    version="0.1.1",
     author='Kudamage Rivindhu Venuka Geeneth',
     author_email='rivindhu98@gmail.com',
     description='A Django library to secure the admin panel by faking login pages and logging attempts.',

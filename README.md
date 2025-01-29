@@ -106,3 +106,5 @@ If you find this library helpful, please consider giving the repository a ⭐ to
 ## Updates Log
 
 * **v0.1.0** - Initial release with full functionality to secure Django admin dashboard.
+
+* **v0.1.1** - Updated the README.md file with more accurate and easy to follow instructions.
