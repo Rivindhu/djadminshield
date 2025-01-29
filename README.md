@@ -1,36 +1,63 @@
 # djadminshield
 
-A Django library to secure the admin panel by faking login pages and logging attempts.
+**djadminshield** is a Django library designed to secure your admin panel by creating fake login page and tracking unauthorized access attempts. Enhance your website's security and stay ahead of potential hackers!
+
+
+---
+
+## Features
+* Fake admin login page that mimic the real admin login.
+* Logs unauthorized login attempts with detailed information:
+    * IP address, browser, OS, device type, and preferred languages.
+    * A description of attempts, including warnings for guessed credentials.
+* Protect your real admin panel with customizable login URLs. 
+
+---
+
 
 ## Installation
+
+Install the library by using pip:
 
 ```bash
 pip install djadminshield
 ```
 
-## Usage
-Migrate the database by executing the django migrate command.
 
-```bash
-python manage.py migrate
-```
+## Setup
 
-If you didn't create your superuser please create the superuser.
+1. **Add to Installed Apps**
+    
+    Add ```djadminshield``` to your ```INSTALLED_APPS``` in ```settings.py```: 
 
-```bash
-python manage.py createsuperuser
-```
+    ```python
+    INSTALLED_APPS = [
+        ...,
+        'djadminshield',
+    ]
+    ```
 
-Installed the library in the settings.py file
+2. **Apply Database Migrations**
 
-```python
-INSTALLED_APPS = [
-    .....,
-    'djadminshield',
-]
-```
+    Run the following command to apply the necessary migrations:
 
-Now go to the project directory urls.py file and add the below code.
+    ```bash
+    python manage.py migrate
+    ```
+
+3. **Create a Superuser**
+
+    If you haven't already created a superuser, do so now:
+
+    ```bash
+    python manage.py createsuperuser
+    ```
+
+---
+
+## Configuration
+
+Update your project's ```urls.py``` file:
 
 ```python
 from django.contrib import admin
@@ -38,23 +65,44 @@ from django.urls import include, path
 from djadminshield import views
 
 urlpatterns = [
-    path('admin/', views.fake_admin_login, name='fake_admin_login'),
-    path('real-admin-url/', admin.site.urls),
+    path('admin/', views.fake_admin_login, name='fake_admin_login'),
+    path('real-admin-url/', admin.site.urls),
 ]
 ```
 
-In above code we import the views from the djadminshield library so we can use the 
-djadminshield view functions. 
+* Replace ```'real-admin-url/'``` with a unique and unguessable route for your actual admin login (e.g., ```'secure-admin-login/'```).
 
-Then we added the fake admin login page to the 'admin/' url route. You can see we using the 
-djadminshield fake_admin_login function to render the fake admin login pages.
-
-second url route is for the actual admin user login page, for demonstration purposes we named 
-it as 'real-admin-url/' but you can give what ever you want. Please make sure to the given url route is not guessable by hackers.
+---
 
 
-## How to try
+## How to test
 
-Then you can this by directing to the admin URL like www.example.com/admin  then this will directed to the fake admin dashboard login page. This login page is exactly same as the real django admin login page.
+1. Navigate to the ```/admin``` URL of your project.
+    * You'll see a **fake admin login page** identical to the real one.
+2. Attempt to login with invalid credentials.
+    * These attempts will be logged and visible in the Django admin dashboard under the "**Unauthorized Access Attempts**" table in the "DJADMINSHIELD" section.
+3. Check the logs for information such as:
+    * IP address, attempt time, browser, OS, and description.
+4. If someone successfully guess the credentials, the fake login page will still prevent access while login the activity.
 
-If someone trying to login as admin those attempt will be recorded and website real admin user can see them by simply going to the admin dashboard. In the Django admin dashboard, under the “DJADMINSHIELD” there’s a table called “Unauthorized Access Attempts”. In there by using that table you can get information such as ip address, attempt time, browser, operating system, device type, prefer languages by unauthorized hacker, and a description. This description might be helpful because let’s say a hacker successfully find the username and password and trying to login to the dashboard via the fake login page that action is captured and this description is showing to the real admin user someone is somehow get the real username and password. Then the real admin can update the password immediately. Even if hacker guess or get the real username and password the fake login page might not be log them in instead it showing the same error that password and username is not correct. 
+---
+
+## Example Use Case
+
+* Use this library to monitor and analyze unauthorized login attempts.
+
+* Identify potential threats based on logged data and take immediate actions, such as updating the passwords.
+
+---
+
+## GitHub Repository
+
+Here is the [djadminshield GitHub Repository](https://github.com/Rivindhu/djadminshield). Feel free to check it out! 😊😊😊
+
+If you find this library helpful, please consider giving the repository a ⭐ to show your support. Contribution and suggestions are always welcome--feel to raise issues or submit pull requests!
+
+---
+
+## Updates Log
+
+* **v0.1.0** - Initial release with full functionality to secure Django admin dashboard.
